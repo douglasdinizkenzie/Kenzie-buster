@@ -30,8 +30,7 @@ class UserSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         is_employee = validated_data.pop("is_employee", False)
-        user = User.objects.create_user(**validated_data)
-        user.is_employee = is_employee
-        user.is_superuser = is_employee
-        user.save()
+        user = User.objects.create_user(
+            **validated_data, is_employee=is_employee, is_superuser=is_employee
+        )
         return user
