@@ -10,6 +10,9 @@ class RatingChoices(models.TextChoices):
 
 
 class Movie(models.Model):
+    class Meta:
+        ordering = ["id"]
+
     title = models.CharField(max_length=127)
     duration = models.CharField(max_length=10, null=True, default=None)
     rating = models.CharField(
